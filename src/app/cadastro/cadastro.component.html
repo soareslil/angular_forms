@@ -1,38 +1,126 @@
 <main class="principal">
   <h2 class="principal__titulo">Dados do cadastro</h2>
 
-  <form class="principal__formulario" id="formulario" #f="ngForm" (ngSubmit)="cadastrar(f)">
+  <form
+    class="principal__formulario"
+    id="formulario"
+    #f="ngForm"
+    (ngSubmit)="cadastrar(f)"
+  >
     <h3 class="principal__subtitulo">Dados pessoais</h3>
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="nome">Nome Completo</label>
-      <input name="nome" id="nome" class="campo__escrita" ngModel required minlength="3">
-      <div *ngIf="(f.controls['nome']?.invalid && f.controls['nome']?.touched) || f.controls['nome']?.dirty ">
-        <span class="erro__texto" *ngIf="f.controls['nome']?.errors?.['required']">O campo de nome é obrigatório!</span>
-        <span class="erro__texto" *ngIf="f.controls['nome']?.errors?.['minlength']">Nome deve ter no minimo 3 caracteres.</span>
+      <input
+        name="nome"
+        id="nome"
+        class="campo__escrita"
+        ngModel
+        required
+        minlength="3"
+      />
+      <div
+        *ngIf="
+          (f.controls['nome']?.invalid && f.controls['nome']?.touched) ||
+          f.controls['nome']?.dirty
+        "
+      >
+        <span
+          class="erro__texto"
+          *ngIf="f.controls['nome']?.errors?.['required']"
+          >O campo de nome é obrigatório!</span
+        >
+        <span
+          class="erro__texto"
+          *ngIf="f.controls['nome']?.errors?.['minlength']"
+          >Nome deve ter no minimo 3 caracteres.</span
+        >
       </div>
     </div>
     <div class="formulario__dupla">
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="nascimento">Nascimento</label>
-        <input required ngModel name="nascimento" id="nascimento" type="date" class="campo__escrita"/>
-        <div *ngIf="(f.controls['nascimento']?.invalid && f.controls['nascimento']?.touched) || f.controls['email']?.dirty ">
-          <span class="erro__texto" *ngIf="f.controls['nascimento']?.errors?.['required']">O campo de nascimento é obrigatório!</span>
+        <input
+          required
+          ngModel
+          name="nascimento"
+          id="nascimento"
+          type="date"
+          class="campo__escrita"
+        />
+        <div
+          *ngIf="
+            (f.controls['nascimento']?.invalid &&
+              f.controls['nascimento']?.touched) ||
+            f.controls['email']?.dirty
+          "
+        >
+          <span
+            class="erro__texto"
+            *ngIf="f.controls['nascimento']?.errors?.['required']"
+            >O campo de nascimento é obrigatório!</span
+          >
         </div>
       </div>
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="telefone">Contato</label>
-        <input ngModel name="telefone" id="telefone" type="tel" placeholder="(XX) XXXXX-XXXX" class="campo__escrita"/>
+        <input
+          pattern="(\(?\d{2}\)?\s?)(\d{5}\-?\d{4})"
+          required
+          ngModel
+          name="telefone"
+          id="telefone"
+          type="tel"
+          placeholder="(XX) XXXXX-XXXX"
+          class="campo__escrita"
+        />
+        <div
+        *ngIf="
+          (f.controls['telefone']?.invalid && f.controls['telefone']?.touched) ||
+          f.controls['telefone']?.dirty
+        "
+      >
+        <span
+          class="erro__texto"
+          *ngIf="f.controls['telefone']?.errors?.['required']"
+          >O campo de contato é obrigatório!</span
+        >
+        <span
+          class="erro__texto"
+          *ngIf="f.controls['telefone']?.errors?.['pattern']"
+          >Preencha corretamente o seu contato: 11-12345-1234</span
+        >
+      </div>
       </div>
     </div>
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="email">E-mail</label>
-      <input pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$" required ngModel name="email" id="email" type="email" class="campo__escrita"/>
-      <div *ngIf="(f.controls['nome']?.invalid && f.controls['email']?.touched) || f.controls['email']?.dirty ">
-        <span class="erro__texto" *ngIf="f.controls['email']?.errors?.['required']">O campo de email é obrigatório!</span>
-        <span class="erro__texto" *ngIf="f.controls['email']?.errors?.['pattern']">Preencha corretamente o seu email: exemplo@exemplo.com</span>
+      <input
+        pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$"
+        required
+        ngModel
+        name="email"
+        id="email"
+        type="email"
+        class="campo__escrita"
+      />
+      <div
+        *ngIf="
+          (f.controls['email']?.invalid && f.controls['email']?.touched) ||
+          f.controls['email']?.dirty
+        "
+      >
+        <span
+          class="erro__texto"
+          *ngIf="f.controls['email']?.errors?.['required']"
+          >O campo de email é obrigatório!</span
+        >
+        <span
+          class="erro__texto"
+          *ngIf="f.controls['email']?.errors?.['pattern']"
+          >Preencha corretamente o seu email: exemplo@exemplo.com</span
+        >
       </div>
     </div>
-
 
     <h3 class="principal__subtitulo">Endereço</h3>
 
@@ -99,8 +187,7 @@
           <option value="EX">Estrangeiro</option>
         </select>
       </div>
-
     </div>
     <button type="submit" class="formulario__botao">Enviar formulário</button>
-    </form>
+  </form>
 </main>
