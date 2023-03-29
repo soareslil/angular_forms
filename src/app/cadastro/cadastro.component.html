@@ -14,16 +14,23 @@
     <div class="formulario__dupla">
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="nascimento">Nascimento</label>
-        <input name="nascimento" id="nascimento" type="date" class="campo__escrita"/>
+        <input required ngModel name="nascimento" id="nascimento" type="date" class="campo__escrita"/>
+        <div *ngIf="(f.controls['nascimento']?.invalid && f.controls['nascimento']?.touched) || f.controls['email']?.dirty ">
+          <span class="erro__texto" *ngIf="f.controls['nascimento']?.errors?.['required']">O campo de nascimento é obrigatório!</span>
+        </div>
       </div>
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="telefone">Contato</label>
-        <input name="telefone" id="telefone" type="tel" placeholder="(XX) XXXXX-XXXX" class="campo__escrita"/>
+        <input ngModel name="telefone" id="telefone" type="tel" placeholder="(XX) XXXXX-XXXX" class="campo__escrita"/>
       </div>
     </div>
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="email">E-mail</label>
-      <input name="email" id="email" type="email" class="campo__escrita"/>
+      <input pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$" required ngModel name="email" id="email" type="email" class="campo__escrita"/>
+      <div *ngIf="(f.controls['nome']?.invalid && f.controls['email']?.touched) || f.controls['email']?.dirty ">
+        <span class="erro__texto" *ngIf="f.controls['email']?.errors?.['required']">O campo de email é obrigatório!</span>
+        <span class="erro__texto" *ngIf="f.controls['email']?.errors?.['pattern']">Preencha corretamente o seu email: exemplo@exemplo.com</span>
+      </div>
     </div>
 
 
