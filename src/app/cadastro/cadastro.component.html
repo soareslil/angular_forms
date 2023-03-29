@@ -17,23 +17,20 @@
         ngModel
         required
         minlength="3"
+        #nome="ngModel"
       />
-      <div
-        *ngIf="
-          (f.controls['nome']?.invalid && f.controls['nome']?.touched) ||
-          f.controls['nome']?.dirty
-        "
-      >
-        <span
-          class="erro__texto"
-          *ngIf="f.controls['nome']?.errors?.['required']"
-          >O campo de nome é obrigatório!</span
+      <div *ngIf="(nome?.invalid && nome?.touched) || nome?.dirty">
+        <span class="erro__texto"></span>
+        <app-mensagem
+          mensagem="O campo de nome é obrigatório!"
+          *ngIf="nome?.errors?.['required']"
         >
-        <span
-          class="erro__texto"
-          *ngIf="f.controls['nome']?.errors?.['minlength']"
-          >Nome deve ter no minimo 3 caracteres.</span
+        </app-mensagem>
+        <app-mensagem
+          mensagem="Deve ter no minimo 3 caracteres"
+          *ngIf="nome?.errors?.['minlength']"
         >
+        </app-mensagem>
       </div>
     </div>
     <div class="formulario__dupla">
@@ -42,23 +39,24 @@
         <input
           required
           ngModel
+          maiorIdadeValidator
           name="nascimento"
           id="nascimento"
           type="date"
           class="campo__escrita"
+          #nascimento="ngModel"
         />
         <div
           *ngIf="
-            (f.controls['nascimento']?.invalid &&
-              f.controls['nascimento']?.touched) ||
-            f.controls['email']?.dirty
+            (nascimento?.invalid && nascimento?.touched) || nascimento?.dirty
           "
         >
-          <span
-            class="erro__texto"
-            *ngIf="f.controls['nascimento']?.errors?.['required']"
-            >O campo de nascimento é obrigatório!</span
+          <app-mensagem
+            mensagem="O campo de nascimento é obrigatório!"
+            *ngIf="nascimento?.errors?.['required']"
           >
+          </app-mensagem>
+          <app-mensagem *ngIf="nascimento?.errors?.['maiorIdadeValidator']" mensagem="O usuario deve ser maior de 18 anos"></app-mensagem>
         </div>
       </div>
       <div class="formulario__campo">
@@ -72,24 +70,23 @@
           type="tel"
           placeholder="(XX) XXXXX-XXXX"
           class="campo__escrita"
+          #telefone="ngModel"
         />
+
         <div
-        *ngIf="
-          (f.controls['telefone']?.invalid && f.controls['telefone']?.touched) ||
-          f.controls['telefone']?.dirty
-        "
-      >
-        <span
-          class="erro__texto"
-          *ngIf="f.controls['telefone']?.errors?.['required']"
-          >O campo de contato é obrigatório!</span
+          *ngIf="(telefone?.invalid && telefone?.touched) || telefone?.dirty"
         >
-        <span
-          class="erro__texto"
-          *ngIf="f.controls['telefone']?.errors?.['pattern']"
-          >Preencha corretamente o seu contato: 11-12345-1234</span
-        >
-      </div>
+          <app-mensagem
+            mensagem="O campo de contato é obrigatório!"
+            *ngIf="telefone?.errors?.['required']"
+          >
+          </app-mensagem>
+          <app-mensagem
+            mensagem="Exemplo de contato: 11-12345-1234"
+            *ngIf="telefone?.errors?.['pattern']"
+          >
+          </app-mensagem>
+        </div>
       </div>
     </div>
     <div class="formulario__campo">
