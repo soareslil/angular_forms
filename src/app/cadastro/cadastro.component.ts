@@ -26,8 +26,8 @@ export class CadastroComponent implements OnInit {
     }
   }
 
-  populandoEndereco(dados: any, f: NgForm){
-    f.form.patchValue({
+  populandoEndereco(dados: any, form: NgForm){
+    form.form.patchValue({
       endereco: dados.logradouro,
       complemento: dados.complemento,
       bairro: dados.bairro,
@@ -38,10 +38,10 @@ export class CadastroComponent implements OnInit {
 
   cadastrar(form: NgForm) {
     if (form.valid) {
-      this.router.navigate(["./sucesso"]);
+      this.router.navigate(["/sucesso"]);
     } else {
       alert("Formulário inválido");
     }
-    console.log(form.controls);
+    console.log(form.controls, 'aqui');
   }
 }
