@@ -1,1 +1,1 @@
-!()[https://github.com/soareslil/angular_forms/blob/main/Formul%C3%A1rio%20Reativo.gif]
+![](https://github.com/soareslil/angular_forms/blob/main/Formul%C3%A1rio%20Reativo.gif)
